@@ -3,13 +3,16 @@
   "version": "1.0.0",
   "description": "It is a Doctor appointment management project.Project name is BD-Doctors",
   "main": "index.js",
+  "type": "module",
   "scripts": {
-    "test": "npm start"
+    "test": " start",
+    "start": "nodemon index.js"
   },
   "author": "Borhan Rabbani",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "body-parser": "^1.20.3",
     "cloudinary": "^2.5.1",
     "cors": "^2.8.5",
     "dotenv": "^16.4.7",
