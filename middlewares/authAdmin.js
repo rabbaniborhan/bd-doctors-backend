@@ -3,7 +3,7 @@ import jwt from "jsonwebtoken";
 
 const authAdmin = async (req, res, next) => {
   try {
-    const { admintoken } = req.headers;
+    const { admintoken } = req?.headers;
     if (!admintoken) {
       return res
         .status(400)

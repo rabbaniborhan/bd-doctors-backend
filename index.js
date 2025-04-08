@@ -4,6 +4,8 @@ import "dotenv/config";
 import express from "express";
 import connectDB from "./config/mongodb.js";
 import adminRoute from "./routes/adminRoute.js";
+import doctorRouter from "./routes/doctorRoute.js";
+import userRouter from "./routes/userRoute.js";
 
 // app config
 const app = express();
@@ -20,6 +22,8 @@ app.use(cors());
 
 //api end point
 app.use("/api/admin", adminRoute);
+app.use("/api/doctor", doctorRouter);
+app.use("/api/user", userRouter);
 
 app.get("/", (req, res) => {
   res.send("server is running");

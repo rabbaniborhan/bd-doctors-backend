@@ -46,12 +46,8 @@ const addDoctor = async (req, res) => {
         message: "Password must be at least 8 characters long",
       });
     }
-
-    // Hash the password
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
-    // Prepare doctor data
     const doctorData = {
       name,
       email,
@@ -66,7 +62,6 @@ const addDoctor = async (req, res) => {
       date: Date.now(),
     };
 
-    // Save doctor to database
     const newDoctor = new doctorModel(doctorData);
     await newDoctor.save();
 
@@ -99,9 +94,19 @@ const loginAdmin = async (req, res) => {
       });
     }
   } catch (error) {
-    console.error("Error adding doctor:", error);
+    console.error("Error login admin:", error);
     res.status(500).json({ success: false, message: "Internal Server Error" });
   }
 };
 
-export { addDoctor, loginAdmin };
+//get all doctors
+const allDoctors = async (req, res) => {
+  try {
+    const doctors = await doctorModel.find({}).select("-password");
+    res.json({ success: true, doctors });
+  } catch (error) {
+    console.error("Error getting doctors:", error);
+    res.status(500).json({ success: false, message: "Internal Server Error" });
+  }
+};
+export { addDoctor, allDoctors, loginAdmin };
